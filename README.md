@@ -20,7 +20,7 @@ Either download the project from GitHub and extract it, or use Terminal/PowerShe
 
 ```bash
 git clone <PROJECT_GITHUB_URL>
-cd FaceNet-Transformer-Attendance-System
+cd FACE-ATTEND
 ```
 
 If you downloaded a ZIP, extract it, open Terminal/PowerShell in the extracted project folder, and continue there. This folder must contain `manage.py`.
