@@ -1,3 +1,41 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Enroll student</title><link rel="stylesheet" href="/static/attendance.css"></head><body><header class="top"><a class="brand" href="/">FACE<span>ATTEND</span></a><nav><a href="{% url 'admin-dashboard' %}">Dashboard</a><a href="/admin/">Manage data</a></nav></header><main class="wrap narrow"><p class="eyebrow">ADMIN PORTAL</p><h1>Enroll student</h1>{% for message in messages %}<p class="{{ message.tags }}">{{ message }}</p>{% endfor %}<form method="post" enctype="multipart/form-data" class="panel">{% csrf_token %}<label>Student roll number<input name="student_number" required></label><label>Full name<input name="full_name" required></label><div class="camera"><video id="video" autoplay playsinline muted></video></div><canvas id="canvas" hidden></canvas><input id="frame" name="frame" type="file" accept="image/jpeg" hidden required><p><button type="button" id="capture">Capture face</button> <span id="capture-status" class="muted">No image captured</span></p><button type="submit">Save enrollment</button></form></main><script>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Enroll student</title>
+<link rel="stylesheet" href="/static/attendance.css">
+</head>
+<body>
+<header class="top">
+<a class="brand" href="/">FACE<span>ATTEND</span>
+</a>
+<nav>
+<a href="{% url 'admin-dashboard' %}">Dashboard</a>
+<a href="/admin/">Manage data</a>
+</nav>
+</header>
+<main class="wrap narrow">
+<p class="eyebrow">ADMIN PORTAL</p>
+<h1>Enroll student</h1>{% for message in messages %}<p class="{{ message.tags }}">{{ message }}</p>{% endfor %}<form method="post" enctype="multipart/form-data" class="panel">{% csrf_token %}<label>Student roll number<input name="student_number" required>
+</label>
+<label>Full name<input name="full_name" required>
+</label>
+<div class="camera">
+<video id="video" autoplay playsinline muted>
+</video>
+</div>
+<canvas id="canvas" hidden>
+</canvas>
+<input id="frame" name="frame" type="file" accept="image/jpeg" hidden required>
+<p>
+<button type="button" id="capture">Capture face</button> <span id="capture-status" class="muted">No image captured</span>
+</p>
+<button type="submit">Save enrollment</button>
+</form>
+</main>
+<script>
 const v=document.querySelector('#video'),c=document.querySelector('#canvas'),f=document.querySelector('#frame');navigator.mediaDevices.getUserMedia({video:true,audio:false}).then(s=>v.srcObject=s).catch(()=>document.querySelector('#capture-status').textContent='Camera permission is required');document.querySelector('#capture').onclick=()=>{c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);c.toBlob(b=>{const d=new DataTransfer();d.items.add(new File([b],'face.jpg',{type:'image/jpeg'}));f.files=d.files;document.querySelector('#capture-status').textContent='Face image captured';},'image/jpeg',.9)};
-</script></body></html>
+</script>
+</body>
+</html>

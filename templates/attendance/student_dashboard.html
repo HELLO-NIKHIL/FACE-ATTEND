@@ -1,1 +1,51 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>My attendance</title><link rel="stylesheet" href="/static/attendance.css"></head><body><header class="top"><a class="brand" href="/">FACE<span>ATTEND</span></a><nav><a href="{% url 'student-logout' %}">Sign out</a></nav></header><main class="wrap"><p class="eyebrow">STUDENT PORTAL</p><h1>Hello, {{ student.full_name }}</h1><p class="muted">Roll number: {{ student.student_number }} · Your attendance history</p><section class="panel"><h2>Attendance by course</h2>{% for item in summary %}<p>{{ item.course.code }} — {{ item.percentage }}% ({{ item.attended }}/{{ item.total }} sessions)</p>{% empty %}<p class="muted">No course sessions yet.</p>{% endfor %}</section><section class="panel"><h2>Attendance history</h2><button type="button" onclick="window.print()">Print report</button><div class="table-scroll"><table><thead><tr><th>Course</th><th>Session</th><th>Date</th><th>Time</th><th>Status</th></tr></thead><tbody>{% for record in records %}<tr><td>{{ record.session.course.code }}</td><td>{{ record.session.title }}</td><td>{{ record.marked_at|date:"Y-m-d" }}</td><td>{{ record.marked_at|date:"H:i" }}</td><td>{{ record.get_status_display }}</td></tr>{% empty %}<tr><td colspan="5">No attendance records yet.</td></tr>{% endfor %}</tbody></table></div></section></main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My attendance</title>
+<link rel="stylesheet" href="/static/attendance.css">
+</head>
+<body>
+<header class="top">
+<a class="brand" href="/">FACE<span>ATTEND</span>
+</a>
+<nav>
+<a href="{% url 'student-logout' %}">Sign out</a>
+</nav>
+</header>
+<main class="wrap">
+<p class="eyebrow">STUDENT PORTAL</p>
+<h1>Hello, {{ student.full_name }}</h1>
+<p class="muted">Roll number: {{ student.student_number }} · Your attendance history</p>
+<section class="panel">
+<h2>Attendance by course</h2>{% for item in summary %}<p>{{ item.course.code }} — {{ item.percentage }}% ({{ item.attended }}/{{ item.total }} sessions)</p>{% empty %}<p class="muted">No course sessions yet.</p>{% endfor %}</section>
+<section class="panel">
+<h2>Attendance history</h2>
+<button type="button" onclick="window.print()">Print report</button>
+<div class="table-scroll">
+<table>
+<thead>
+<tr>
+<th>Course</th>
+<th>Session</th>
+<th>Date</th>
+<th>Time</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>{% for record in records %}<tr>
+<td>{{ record.session.course.code }}</td>
+<td>{{ record.session.title }}</td>
+<td>{{ record.marked_at|date:"Y-m-d" }}</td>
+<td>{{ record.marked_at|date:"H:i" }}</td>
+<td>{{ record.get_status_display }}</td>
+</tr>{% empty %}<tr>
+<td colspan="5">No attendance records yet.</td>
+</tr>{% endfor %}</tbody>
+</table>
+</div>
+</section>
+</main>
+</body>
+</html>

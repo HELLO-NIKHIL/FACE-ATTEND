@@ -1,28 +1,44 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
   <title>{% if login_type == 'admin' %}Admin{% else %}Student{% endif %} login</title>
   <link rel="stylesheet" href="/static/attendance.css">
 </head>
 <body>
-<header class="top"><a class="brand" href="/">FACE<span>ATTEND</span></a><nav><a href="/">Attendance kiosk</a></nav></header>
-<main class="wrap narrow"><section class="panel">
-  <p class="eyebrow">SECURE PORTAL</p><h1>Sign in</h1>
+<header class="top">
+<a class="brand" href="/">FACE<span>ATTEND</span>
+</a>
+<nav>
+<a href="/">Attendance kiosk</a>
+</nav>
+</header>
+<main class="wrap narrow">
+<section class="panel">
+  <p class="eyebrow">SECURE PORTAL</p>
+<h1>Sign in</h1>
   {% if form.errors %}<p class="warning">Invalid username or password for this account type.</p>{% endif %}
   {% for message in messages %}<div class="toast toast-{{ message.tags }}">{{ message }}</div>{% endfor %}
   <form method="post" id="login-form" action="{% if login_type == 'admin' %}{% url 'admin-login' %}{% else %}{% url 'student-login' %}{% endif %}">
     {% csrf_token %}
     <label for="login-type">Sign in as</label>
-    <select id="login-type" name="login_type"><option value="student" {% if login_type != 'admin' %}selected{% endif %}>Student</option><option value="admin" {% if login_type == 'admin' %}selected{% endif %}>Admin / Staff</option></select>
+    <select id="login-type" name="login_type">
+<option value="student" {% if login_type != 'admin' %}selected{% endif %}>Student</option>
+<option value="admin" {% if login_type == 'admin' %}selected{% endif %}>Admin / Staff</option>
+</select>
     {% if login_type == 'admin' and next_url %}<input type="hidden" name="next" value="{{ next_url }}">{% endif %}
-    <label>Username<input name="username" autocomplete="username" required autofocus></label>
-    <label>Password<input type="password" name="password" autocomplete="current-password" required></label>
+    <label>Username<input name="username" autocomplete="username" required autofocus>
+</label>
+    <label>Password<input type="password" name="password" autocomplete="current-password" required>
+</label>
     <button type="submit">Sign in</button>
   </form>
-</section></main>
+</section>
+</main>
 <script>
 // The selector is submitted with the credentials; it does not navigate/reset
 // while the user is choosing an option.
 </script>
-</body></html>
+</body>
+</html>
