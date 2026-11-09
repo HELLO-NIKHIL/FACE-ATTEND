@@ -1,0 +1,58 @@
+
+camera:
+  source: 0                # 0 for default webcam; or RTSP/URL string
+  width: 640
+  height: 480
+  fps: 30
+
+recognition:
+  similarity_threshold: 0.70   # cosine similarity accept threshold
+  min_face_size: 80            # pixels; skip tiny faces
+
+liveness:
+  timeout_seconds: 10.0
+  blink:
+    ear_threshold: 0.21
+    frames_below: 3
+    rebounds_above: 0.24
+    required_blinks: 2
+    window_seconds: 3.0
+  yaw_right:
+    delta_deg: 14.0
+    window_seconds: 2.0
+  mouth_open:
+    lip_gap_norm: 0.06
+    min_frames: 15
+  smile:
+    ratio_increase: 0.12
+    min_frames: 10
+
+anti_replay:
+  enabled: true
+  screen_edge:
+    min_long_lines: 3      # need ≥ this many long near-horizontal/vertical lines
+    min_length: 120        # pixels
+    angle_tol_deg: 10      # degrees tolerance from 0° / 90°
+  moire:
+    enabled: false         # set true to also use FFT-based moiré check (slower)
+    peak_ratio: 5.0        # strength over median spectrum for a “peak”
+
+logging:
+  cooldown_seconds: 60
+  dir: logs
+
+storage:
+  template_path: data/templates.json
+
+ui:
+  display_seconds: 2.5
+
+transformer_liveness:
+  enabled: false        
+  enforce: false        
+  window: 16            # frames to buffer (we accept >= window/2)
+  thresholds:           # per-challenge mock thresholds
+    blink2: 0.40
+    yaw_right: 0.35
+    mouth_open: 0.45
+    smile: 0.40

@@ -1,0 +1,18 @@
+{
+  "model_name": "vit_model",
+  "version": "1.0.0",
+  "created_at": 1762080414,
+  "framework": "pytorch",
+  "task": "binary_liveness_verification",
+  "input_shape": [
+    16,
+    3,
+    224,
+    224
+  ],
+  "class_names": [
+    "spoof",
+    "real"
+  ],
+  "sha256": "7849862814e73bde13ab2b49c9a14a4e270423adbf26e64e643b71d13e562e03"
+}

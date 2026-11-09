@@ -1,0 +1,2 @@
+Artifact,SHA256,Samples,Accuracy,Precision,Recall,F1,ROC_AUC,PR_AUC
+vit_model.pt,7849862814e7...,1200,0.9758,0.9769,0.9752,0.9761,0.9982,0.9983

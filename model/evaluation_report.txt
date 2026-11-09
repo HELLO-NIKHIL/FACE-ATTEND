@@ -1,0 +1,18 @@
+Transformer Liveness Verifier — Evaluation Summary
+========================================================
+Artifact : vit_model.pt
+Checksum : 7849862814e73bde13ab2b49c9a14a4e270423adbf26e64e643b71d13e562e03
+Samples  : 1200
+
+Metrics:
+- Accuracy : 0.9758
+- Precision: 0.9769
+- Recall   : 0.9752
+- F1-score : 0.9761
+- ROC AUC  : 0.9982
+- PR  AUC  : 0.9983
+
+Files:
+- Confusion Matrix : model/plots/confusion_matrix.png
+- ROC Curve        : model/plots/roc_curve.png
+- PR Curve         : model/plots/pr_curve.png

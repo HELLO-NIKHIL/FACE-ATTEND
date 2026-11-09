@@ -1,0 +1,20 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+
+# Python environments and generated files
+.venv/
+.venv*/
+venv/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.DS_Store
+**/.DS_Store
+
+# Local runtime data
+.run/
+logs/*.csv
+logs/*.csv.bak
+data/templates.json.bak
